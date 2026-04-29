@@ -9,7 +9,7 @@ typedef struct {
     int nilai;
 } Artefak;
 
-int banding(const void *a, const void *b) {
+int compare(const void *a, const void *b) {
     Artefak *x = (Artefak *)a;
     Artefak *y = (Artefak *)b;
 
@@ -27,17 +27,20 @@ int banding(const void *a, const void *b) {
 
 int main() {
     int n;
-    scanf("%d", n);
+    scanf("%d", &n);
+
     Artefak artefak[n];
 
-    for (int i = 0; i<n ; i++) {
+    for (int i = 0; i < n; i++) {
         scanf("%s %s %d %d", artefak[i].nama, artefak[i].kategori, &artefak[i].tahun, &artefak[i].nilai);
     }
-    qsort(artefak,n, sizeof(Artefak), banding);
 
-    for (int i = 0; i<n; i++) {
-        printf("%s %s %d %d\n", artefak[i].nama, artefak[i].kategori, &artefak[i].tahun, &artefak[i].nilai);
+    qsort(artefak, n, sizeof(Artefak), compare);
+
+    for (int i = 0; i < n; i++) {
+        printf("%s %s %d %d\n", artefak[i].nama, artefak[i].kategori, artefak[i].tahun, artefak[i].nilai);
     }
 
     return 0;
 }
+
