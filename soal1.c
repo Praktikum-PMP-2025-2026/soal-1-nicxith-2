@@ -16,20 +16,21 @@ typedef struct {
     int nilai;
 } Artefak;
 
-int compare(const void *a, const void *b) {
-    Artefak *x = (Artefak *)a;
-    Artefak *y = (Artefak *)b;
+void tukar(Artefak *a, Artefak *b) {
+    Artefak temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
-    if (strcmp(x->kategori, y->kategori) != 0)
-        return strcmp(x->kategori, y->kategori);
+int lebihDahulu(Artefak a, Artefak b) {
+    int cmp = strcmp(a.kategori, b.kategori);
+    if (cmp != 0) return cmp < 0;
 
-    if (x->tahun != y->tahun)
-        return x->tahun - y->tahun;
+    if (a.tahun != b.tahun) return a.tahun < b.tahun;
 
-    if (x->nilai != y->nilai)
-        return y->nilai - x->nilai;
+    if (a.nilai != b.nilai) return a.nilai > b.nilai;
 
-    return strcmp(x->nama, y->nama);
+    return strcmp(a.nama, b.nama) < 0;
 }
 
 int main() {
@@ -38,17 +39,23 @@ int main() {
 
     Artefak *artefak = (Artefak *)malloc(n * sizeof(Artefak));
 
-    for (int i = 0; i < n; i++) {
+    int i, j;
+    for (i = 0; i < n; i++) {
         scanf("%s %s %d %d", artefak[i].nama, artefak[i].kategori, &artefak[i].tahun, &artefak[i].nilai);
     }
 
-    qsort(artefak, n, sizeof(Artefak), compare);
+    for (i = 0; i < n - 1; i++) {
+        for (j = 0; j < n - 1 - i; j++) {
+            if (!lebihDahulu(artefak[j], artefak[j + 1])) {
+                tukar(&artefak[j], &artefak[j + 1]);
+            }
+        }
+    }
 
-    for (int i = 0; i < n; i++) {
+    for (i = 0; i < n; i++) {
         printf("%s %s %d %d\n", artefak[i].nama, artefak[i].kategori, artefak[i].tahun, artefak[i].nilai);
     }
 
     free(artefak);
     return 0;
 }
-
