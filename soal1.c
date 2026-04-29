@@ -1,3 +1,10 @@
+/* EL2008 Praktikum Pemecahan Masalah dengan Pemrograman 
+ * Modul      : Structures and Dynamic Arrays
+ * Pembuat    : Saragih, Jan Roman Arthuro
+ * NIM        : 13224012 
+ * Deskripsi  : Program yang mengsort sebuah input yang ada nama kategori tahun dan nilai
+ */ 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
