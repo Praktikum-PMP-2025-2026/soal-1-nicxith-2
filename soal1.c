@@ -38,4 +38,6 @@ int main() {
     for (int i = 0; i<n; i++) {
         printf("%s %s %d %d\n", artefak[i].nama, artefak[i].kategori, &artefak[i].tahun, &artefak[i].nilai);
     }
+
+    return 0;
 }
