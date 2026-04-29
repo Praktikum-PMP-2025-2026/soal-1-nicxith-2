@@ -29,7 +29,7 @@ int main() {
     int n;
     scanf("%d", &n);
 
-    Artefak artefak[n];
+    Artefak *artefak = (Artefak *)malloc(n * sizeof(Artefak));
 
     for (int i = 0; i < n; i++) {
         scanf("%s %s %d %d", artefak[i].nama, artefak[i].kategori, &artefak[i].tahun, &artefak[i].nilai);
@@ -41,6 +41,7 @@ int main() {
         printf("%s %s %d %d\n", artefak[i].nama, artefak[i].kategori, artefak[i].tahun, artefak[i].nilai);
     }
 
+    free(artefak);
     return 0;
 }
 
